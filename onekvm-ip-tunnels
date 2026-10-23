@@ -1,0 +1,13 @@
+#!/bin/sh
+# Package dependencies provide the modules. Network settings checks their
+# availability outside the plugin sandbox and loads only configured interfaces.
+# Health must not require loaded modules or read hidden kernel-module files.
+case "${1:-}" in
+    --health)
+        printf '{"ok":true}\n'
+        ;;
+    *)
+        printf 'usage: %s --health\n' "$0" >&2
+        exit 2
+        ;;
+esac

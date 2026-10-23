@@ -1,0 +1,33 @@
+{
+  "manifest_version": 1,
+  "id": "ip-tunnels",
+  "i18n": {
+    "default": {
+      "name": "IP Tunnels",
+      "description": "Adds GRE, IPIP, SIT, VXLAN, GENEVE, FOU and BareUDP support. Configure interfaces in Network settings."
+    },
+    "zh": {
+      "name": "IP 隧道",
+      "description": "提供 GRE、IPIP、SIT、VXLAN、GENEVE、FOU 和 BareUDP 支持，在网络设置中配置接口。"
+    },
+    "zh-TW": {
+      "name": "IP 隧道",
+      "description": "提供 GRE、IPIP、SIT、VXLAN、GENEVE、FOU 和 BareUDP 支援，在網路設定中設定介面。"
+    }
+  },
+  "version": "@VERSION@",
+  "api_version": 2,
+  "architecture": "@ARCH@",
+  "kind": "environment",
+  "author": "OneKVM",
+  "kernel_modules": ["ip_gre", "ipip", "sit", "vxlan", "geneve", "fou", "bareudp"],
+  "permissions": [],
+  "capabilities": [],
+  "default_enabled": false,
+  "icon": {"source": "lucide", "name": "network"},
+  "methods": [{"name": "health", "command": ["bin/onekvm-ip-tunnels", "--health"], "timeout_seconds": 5}],
+  "settings_schema": {"type": "object", "additionalProperties": false, "properties": {}},
+  "secret_fields": [],
+  "resource_limits": {"memory_max": "16M", "cpu_quota": "25%", "tasks_max": 8, "limit_nofile": 64},
+  "healthcheck": {"type": "exec", "command": ["bin/onekvm-ip-tunnels", "--health"], "timeout_seconds": 5}
+}
